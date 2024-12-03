@@ -1,3 +1,4 @@
+// the name is located here  SIES Training And Placement List
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -37,7 +38,7 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">SIES Placement List</Link>  
+          <Link to="/">SIES Training And Placement List</Link>  
           {/* // main header of the nav bar  */}
         </h1>
         <nav className="main-navigation__header-nav">

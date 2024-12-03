@@ -1,3 +1,5 @@
+// this is the card of each year here is the percentage of student present in the card
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,11 +16,13 @@ const UserItem = props => {
             <Avatar image={`http://localhost:5000/${props.image}`} alt={props.name} />
           </div>
           <div className="user-item__info">
-            <h2>{props.name}</h2>
-            <h3>
-              {props.placeCount} {props.placeCount === 1 ? 'Place' : 'Places'}
-            </h3>
-          </div>
+  <h2>{props.name}</h2>
+  <h3>
+    {props.placeCount} {props.placeCount === 1 ? 'Student' : 'Students'} 
+    ({((props.placeCount / 70) * 100).toFixed(2)}%)
+  </h3>
+</div>
+
         </Link>
       </Card>
     </li>

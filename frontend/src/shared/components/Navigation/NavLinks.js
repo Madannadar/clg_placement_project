@@ -1,3 +1,5 @@
+// this is the file with navbar all the button on the navbar are here 
+
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -11,7 +13,7 @@ const NavLinks = props => {
     <ul className="nav-links">
       <li>
         <NavLink to="/" exact>
-          All Year
+          Home
         </NavLink>
       </li>
       {/* {auth.isLoggedIn && (
@@ -21,7 +23,7 @@ const NavLinks = props => {
       )} */}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/places/new">Add Students</NavLink>
+          <NavLink to="/places/new">Add Student</NavLink>
         </li>
       )}
       {!auth.isLoggedIn && (
@@ -31,7 +33,7 @@ const NavLinks = props => {
       )}
       {auth.isLoggedIn && (
         <li>
-          <button onClick={auth.logout}>LOGOUT</button>
+          <button onClick={auth.logout}>Logout</button>
         </li>
       )}
     </ul>
