@@ -1,10 +1,8 @@
 const fs = require('fs');
-
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
 const HttpError = require('../models/http-error');
-const getCoordsForAddress = require('../util/location');
 const Place = require('../models/place');
 const User = require('../models/user');
 
@@ -36,7 +34,6 @@ const getPlaceById = async (req, res, next) => {
 const getPlacesByUserId = async (req, res, next) => {
   const userId = req.params.uid;
 
-  // let places;
   let userWithPlaces;
   try {
     userWithPlaces = await User.findById(userId).populate('places');
@@ -48,7 +45,6 @@ const getPlacesByUserId = async (req, res, next) => {
     return next(error);
   }
 
-  // if (!places || places.length === 0) {
   if (!userWithPlaces || userWithPlaces.places.length === 0) {
     return next(
       new HttpError('Could not find places for the provided user id.', 404)
@@ -70,24 +66,16 @@ const createPlace = async (req, res, next) => {
     );
   }
 
-  // Extract additional fields from request body
-  const { title, description, address, contactNumber, linkedIn } = req.body;
-
-  let coordinates;
-  try {
-    coordinates = await getCoordsForAddress(address);
-  } catch (error) {
-    return next(error);
-  }
+  const { title, description, passoutYear, contactNumber, linkedIn, github } = req.body;
 
   const createdPlace = new Place({
     title,
     description,
-    address,
-    location: coordinates,
-    contactNumber, // Include contact number
-    linkedIn, // Include LinkedIn link
-    image: req.file.path, // Image field
+    passoutYear, // Replace address with passoutYear
+    contactNumber,
+    linkedIn,
+    github, // Add GitHub link
+    image: req.file.path,
     creator: req.userData.userId
   });
 
@@ -133,8 +121,7 @@ const updatePlace = async (req, res, next) => {
     );
   }
 
-  // Extract additional fields from request body
-  const { title, description, contactNumber, address, linkedIn } = req.body;
+  const { title, description, passoutYear, contactNumber, linkedIn, github } = req.body;
   const placeId = req.params.pid;
 
   let place;
@@ -153,18 +140,17 @@ const updatePlace = async (req, res, next) => {
     return next(error);
   }
 
-  // Update place fields
   place.title = title;
   place.description = description;
-  place.contactNumber = contactNumber; // Update contact number
-  place.address = address; // Update address
-  place.linkedIn = linkedIn; // Update LinkedIn link
+  place.passoutYear = passoutYear; // Update passoutYear
+  place.contactNumber = contactNumber;
+  place.linkedIn = linkedIn;
+  place.github = github; // Update GitHub link
 
   if (req.file) {
-    // Optional: Update image if a new one is uploaded
     const oldImagePath = place.image;
     place.image = req.file.path;
-    fs.unlink(oldImagePath, (err) => {
+    fs.unlink(oldImagePath, err => {
       if (err) console.log(err);
     });
   }
@@ -181,8 +167,6 @@ const updatePlace = async (req, res, next) => {
 
   res.status(200).json({ place: place.toObject({ getters: true }) });
 };
-
-
 
 const deletePlace = async (req, res, next) => {
   const placeId = req.params.pid;

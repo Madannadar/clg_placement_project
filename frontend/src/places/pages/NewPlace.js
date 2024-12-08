@@ -28,11 +28,11 @@ const NewPlace = () => {
         value: '',
         isValid: false
       },
-      contactNumber: { // Adding Contact Number field
+      contactNumber: {
         value: '',
         isValid: false
       },
-      address: {
+      passoutYear: { // Replaced Address with Passout Year
         value: '',
         isValid: false
       },
@@ -40,7 +40,11 @@ const NewPlace = () => {
         value: null,
         isValid: false
       },
-      linkedIn: { 
+      linkedIn: {
+        value: '',
+        isValid: false
+      },
+      github: { // Added GitHub Link
         value: '',
         isValid: false
       }
@@ -56,10 +60,11 @@ const NewPlace = () => {
       const formData = new FormData();
       formData.append('title', formState.inputs.title.value);
       formData.append('description', formState.inputs.description.value);
-      formData.append('contactNumber', formState.inputs.contactNumber.value); // Include Contact Number
-      formData.append('address', formState.inputs.address.value);
+      formData.append('contactNumber', formState.inputs.contactNumber.value);
+      formData.append('passoutYear', formState.inputs.passoutYear.value);
       formData.append('image', formState.inputs.image.value);
       formData.append('linkedIn', formState.inputs.linkedIn.value);
+      formData.append('github', formState.inputs.github.value);
       await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
@@ -99,11 +104,12 @@ const NewPlace = () => {
           onInput={inputHandler}
         />
         <Input
-          id="address"
+          id="passoutYear"
           element="input"
-          label="Address"
+          type="text"
+          label="Passout Year"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
+          errorText="Please enter a valid passout year."
           onInput={inputHandler}
         />
         <ImageUpload
@@ -118,6 +124,15 @@ const NewPlace = () => {
           label="LinkedIn Link"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid LinkedIn profile link."
+          onInput={inputHandler}
+        />
+        <Input
+          id="github"
+          element="input"
+          type="url"
+          label="GitHub Link"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid GitHub profile link."
           onInput={inputHandler}
         />
         <Button type="submit" disabled={!formState.isValid}>

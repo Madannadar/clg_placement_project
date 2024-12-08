@@ -46,13 +46,12 @@ const PlaceItem = props => {
           <div className="place-item__info">
             <h2>{props.title}</h2>
             <h3>{props.description}</h3>
-            <p><strong>Email:</strong> {props.email || 'N/A'}</p>
             {isExpanded && (
               <div className="place-item__details">
-                <p><strong>Address:</strong>{props.address}</p>
-                <p><strong>Contact:</strong> {props.contact || 'N/A'}</p>
-                <p><strong>LinkedIn:</strong> <a href={props.linkedin || '#'} target="_blank" rel="noopener noreferrer">{props.linkedin || 'N/A'}</a></p>
-                <p><strong>Additional Notes:</strong> {props.notes || 'N/A'}</p>
+                <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
+                <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p>
+                <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
+                <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
               </div>
             )}
           </div>

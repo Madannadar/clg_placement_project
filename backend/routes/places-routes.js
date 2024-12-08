@@ -21,9 +21,18 @@ router.post(
       .not()
       .isEmpty(),
     check('description').isLength({ min: 5 }),
-    check('address')
+    check('passoutYear')
       .not()
-      .isEmpty()
+      .isEmpty(), // Updated from address to passoutYear
+    check('contactNumber')
+      .not()
+      .isEmpty(), // Added contact number validation
+    check('linkedIn')
+      .not()
+      .isEmpty(), // Added LinkedIn link validation
+    check('github')
+      .not()
+      .isEmpty(), // Added GitHub link validation
   ],
   placesControllers.createPlace
 );
@@ -34,7 +43,19 @@ router.patch(
     check('title')
       .not()
       .isEmpty(),
-    check('description').isLength({ min: 5 })
+    check('description').isLength({ min: 5 }),
+    check('passoutYear')
+      .not()
+      .isEmpty(), // Validate passoutYear during updates
+    check('contactNumber')
+      .not()
+      .isEmpty(), // Validate contact number during updates
+    check('linkedIn')
+      .not()
+      .isEmpty(), // Validate LinkedIn link during updates
+    check('github')
+      .not()
+      .isEmpty(), // Validate GitHub link during updates
   ],
   placesControllers.updatePlace
 );
