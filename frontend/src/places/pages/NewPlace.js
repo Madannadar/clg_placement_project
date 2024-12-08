@@ -44,7 +44,11 @@ const NewPlace = () => {
         value: '',
         isValid: false
       },
-      github: { // Added GitHub Link
+      github: {
+        value: '',
+        isValid: false
+      },
+      package: { 
         value: '',
         isValid: false
       }
@@ -65,6 +69,7 @@ const NewPlace = () => {
       formData.append('image', formState.inputs.image.value);
       formData.append('linkedIn', formState.inputs.linkedIn.value);
       formData.append('github', formState.inputs.github.value);
+      formData.append('package', formState.inputs.package.value);
       await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
@@ -92,6 +97,15 @@ const NewPlace = () => {
           label="Placed Company"
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Please enter a valid description (at least 5 characters)."
+          onInput={inputHandler}
+        />
+        <Input
+          id="package" // Added the package input field here
+          element="input"
+          type="text"
+          label="Package"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid package."
           onInput={inputHandler}
         />
         <Input

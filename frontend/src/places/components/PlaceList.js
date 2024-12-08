@@ -7,15 +7,33 @@ import './PlaceList.css';
 
 const PlaceList = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending and 'desc' for descending
 
   // Filter places based on the search term
   const filteredPlaces = props.items.filter((place) =>
     place.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Sort places based on the package value
+  const sortedPlaces = filteredPlaces.sort((a, b) => {
+    const packageA = a.package ? parseFloat(a.package) : 0;
+    const packageB = b.package ? parseFloat(b.package) : 0;
+
+    if (sortOrder === 'asc') {
+      return packageA - packageB; // Ascending order
+    } else {
+      return packageB - packageA; // Descending order
+    }
+  });
+
   // Update the search term state on input change
   const searchChangeHandler = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  // Toggle sorting order between ascending and descending
+  const toggleSortOrderHandler = () => {
+    setSortOrder((prevSortOrder) => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
   };
 
   return (
@@ -30,8 +48,15 @@ const PlaceList = (props) => {
         />
       </div>
 
+      {/* Sort Button */}
+      <div className="place-list__filter">
+        <button onClick={toggleSortOrderHandler}>
+          Sort by Package ({sortOrder === 'asc' ? 'Greater to Lower' : 'Lower to Greater'})
+        </button>
+      </div>
+
       {/* Render "Search Not Found" message if there are no matches for the search */}
-      {filteredPlaces.length === 0 && searchTerm.trim().length > 0 && (
+      {sortedPlaces.length === 0 && searchTerm.trim().length > 0 && (
         <div className="place-list center">
           <Card>
             <h2>Search Not Found</h2>
@@ -40,7 +65,7 @@ const PlaceList = (props) => {
       )}
 
       {/* Render "No places found" message with "Share Place" button if no places are available at all */}
-      {filteredPlaces.length === 0 && searchTerm.trim().length === 0 && (
+      {sortedPlaces.length === 0 && searchTerm.trim().length === 0 && (
         <div className="place-list center">
           <Card>
             <h2>No places found. Maybe create one?</h2>
@@ -50,9 +75,9 @@ const PlaceList = (props) => {
       )}
 
       {/* Render the list of places if there are matches */}
-      {filteredPlaces.length > 0 && (
+      {sortedPlaces.length > 0 && (
         <ul className="place-list">
-          {filteredPlaces.map((place) => (
+          {sortedPlaces.map((place) => (
             <PlaceItem
               key={place.id}
               id={place.id}
@@ -62,6 +87,11 @@ const PlaceList = (props) => {
               address={place.address}
               creatorId={place.creator}
               coordinates={place.location}
+              package={place.package}
+              passoutYear={place.passoutYear} // Ensure 'passoutYear' is passed as prop
+              contactNumber={place.contactNumber} // Ensure 'contactNumber' is passed as prop
+              linkedIn={place.linkedIn} // Ensure 'linkedIn' is passed as prop
+              github={place.github} // Ensure 'github' is passed as prop
               onDelete={props.onDeletePlace}
             />
           ))}

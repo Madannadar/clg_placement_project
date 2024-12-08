@@ -66,7 +66,7 @@ const createPlace = async (req, res, next) => {
     );
   }
 
-  const { title, description, passoutYear, contactNumber, linkedIn, github } = req.body;
+  const { title, description, passoutYear, contactNumber, linkedIn, github, package } = req.body;
 
   const createdPlace = new Place({
     title,
@@ -75,6 +75,7 @@ const createPlace = async (req, res, next) => {
     contactNumber,
     linkedIn,
     github, // Add GitHub link
+    package, // Added package field
     image: req.file.path,
     creator: req.userData.userId
   });
@@ -121,7 +122,7 @@ const updatePlace = async (req, res, next) => {
     );
   }
 
-  const { title, description, passoutYear, contactNumber, linkedIn, github } = req.body;
+  const { title, description, passoutYear, contactNumber, linkedIn, github, package  } = req.body;
   const placeId = req.params.pid;
 
   let place;
@@ -146,6 +147,8 @@ const updatePlace = async (req, res, next) => {
   place.contactNumber = contactNumber;
   place.linkedIn = linkedIn;
   place.github = github; // Update GitHub link
+  place.package = package; // Update package field
+
 
   if (req.file) {
     const oldImagePath = place.image;

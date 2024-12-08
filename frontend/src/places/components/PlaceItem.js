@@ -46,14 +46,15 @@ const PlaceItem = props => {
           <div className="place-item__info">
             <h2>{props.title}</h2>
             <h3>{props.description}</h3>
+            <p><strong>Package:</strong> {props.package || 'N/A'}</p>
             {isExpanded && (
-              <div className="place-item__details">
-                <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
-                <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p>
-                <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
-                <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
-              </div>
-            )}
+            <div className="place-item__details">
+              <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
+              <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p>
+              <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
+              <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
+            </div>
+          )}
           </div>
           <div className="place-item__actions">
             <Button inverse onClick={toggleExpandHandler}>
