@@ -21,16 +21,20 @@ const UpdatePlace = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPlace, setLoadedPlace] = useState();
   const placeId = useParams().placeId;
+  console.log(placeId);
+  
   const history = useHistory();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false },
+      package: { value: '', isValid: false },
       contactNumber: { value: '', isValid: false },
-      address: { value: '', isValid: false },
+      passoutYear: { value: '', isValid: false },
       image: { value: null, isValid: false },
-      linkedIn: { value: '', isValid: false }
+      linkedIn: { value: '', isValid: false },
+      github: { value: '', isValid: false }
     },
     false
   );
@@ -46,10 +50,12 @@ const UpdatePlace = () => {
           {
             title: { value: responseData.place.title, isValid: true },
             description: { value: responseData.place.description, isValid: true },
+            package: { value: responseData.place.package, isValid: true },
             contactNumber: { value: responseData.place.contactNumber, isValid: true },
-            address: { value: responseData.place.address, isValid: true },
+            passoutYear: { value: responseData.place.passoutYear, isValid: true },
             image: { value: responseData.place.image, isValid: true },
-            linkedIn: { value: responseData.place.linkedIn, isValid: true }
+            linkedIn: { value: responseData.place.linkedIn, isValid: true },
+            github: { value: responseData.place.github, isValid: true }
           },
           true
         );
@@ -62,15 +68,17 @@ const UpdatePlace = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('title', formState.inputs.title.value);
-      formData.append('description', formState.inputs.description.value);
-      formData.append('contactNumber', formState.inputs.contactNumber.value);
-      formData.append('address', formState.inputs.address.value);
+      formData.append('title', formState.inputs.title.value || '');
+      formData.append('description', formState.inputs.description.value || '');
+      formData.append('package', formState.inputs.package.value || '');
+      formData.append('contactNumber', formState.inputs.contactNumber.value || '');
+      formData.append('passoutYear', formState.inputs.passoutYear.value || '');
       if (formState.inputs.image.value) {
         formData.append('image', formState.inputs.image.value);
       }
-      formData.append('linkedIn', formState.inputs.linkedIn.value);
-
+      formData.append('linkedIn', formState.inputs.linkedIn.value || '');
+      formData.append('github', formState.inputs.github.value || '');
+  
       await sendRequest(
         `http://localhost:5000/api/places/${placeId}`,
         'PATCH',
@@ -80,8 +88,11 @@ const UpdatePlace = () => {
         }
       );
       history.push('/' + auth.userId + '/places');
-    } catch (err) {}
+    } catch (err) {
+      console.error(err); // Log errors for debugging
+    }
   };
+  
 
   if (isLoading) {
     return (
@@ -92,7 +103,7 @@ const UpdatePlace = () => {
   }
 
   if (!loadedPlace && !error) {
-    return (
+    return (  
       <div className="center">
         <Card>
           <h2>Could not find place!</h2>
@@ -128,6 +139,17 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <Input
+            id="package"
+            element="input"
+            type="text"
+            label="Package"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid package."
+            onInput={inputHandler}
+            initialValue={loadedPlace.package}
+            initialValid={true}
+          />
+          <Input
             id="contactNumber"
             element="input"
             type="text"
@@ -139,13 +161,14 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <Input
-            id="address"
+            id="passoutYear"
             element="input"
-            label="Address"
+            type="text"
+            label="Passout Year"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid address."
+            errorText="Please enter a valid passout year."
             onInput={inputHandler}
-            initialValue={loadedPlace.address}
+            initialValue={loadedPlace.passoutYear}
             initialValid={true}
           />
           <ImageUpload
@@ -162,6 +185,17 @@ const UpdatePlace = () => {
             errorText="Please enter a valid LinkedIn profile link."
             onInput={inputHandler}
             initialValue={loadedPlace.linkedIn}
+            initialValid={true}
+          />
+          <Input
+            id="github"
+            element="input"
+            type="url"
+            label="GitHub Link"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid GitHub profile link."
+            onInput={inputHandler}
+            initialValue={loadedPlace.github}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
