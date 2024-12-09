@@ -51,7 +51,7 @@ const createPlace = async (req, res, next) => {
     return next(new HttpError('Invalid inputs passed, please check your data.', 422));
   }
 
-  const { title, description, passoutYear, contactNumber, linkedIn, github, package } = req.body;
+  const { title, description, passoutYear, contactNumber, linkedIn, github, LPA } = req.body;
 
   const createdPlace = new Place({
     title,
@@ -60,7 +60,7 @@ const createPlace = async (req, res, next) => {
     contactNumber,
     linkedIn,
     github,
-    package, // Add 'package' field
+    LPA, // Add 'LPA' field
     image: req.file.path,
     creator: req.userData.userId
   });
@@ -92,14 +92,17 @@ const createPlace = async (req, res, next) => {
 
 // Update Place
 const updatePlace = async (req, res, next) => {
+  console.log(req.body, req.params.pid);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log("Validation errors:", errors.array()); // the value coming are undefined 
     return next(new HttpError('Invalid inputs passed, please check your data.', 422));
-  }
+}
 
-  const { title, description, passoutYear, contactNumber, linkedIn, github, package } = req.body;
+
+  const { title, description, passoutYear, contactNumber, linkedIn, github, LPA } = req.body;
   const placeId = req.params.pid;
-
+  // console.log("placeId");
   let place;
   try {
     place = await Place.findById(placeId);
@@ -117,7 +120,18 @@ const updatePlace = async (req, res, next) => {
   place.contactNumber = contactNumber;
   place.linkedIn = linkedIn;
   place.github = github;
-  place.package = package; // Update 'package' field
+  place.LPA = LPA; // Update 'LPA' field
+
+  console.log("Payload being sent:", {
+  title,
+  description,
+  passoutYear,
+  contactNumber,
+  linkedIn,
+  github,
+  LPA,
+});
+
 
   if (req.file) {
     const oldImagePath = place.image;

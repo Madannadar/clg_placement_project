@@ -8,7 +8,7 @@ const placeSchema = new Schema({
   contactNumber: { type: String, required: true },
   linkedIn: { type: String, required: true },
   github: { type: String, required: true },
-  package: { type: String, required: true },  // Added package field
+  LPA: { type: String, required: true },  // Added LPA field
   image: { type: String, required: true },
   creator: { type: mongoose.Types.ObjectId, required: true, ref: 'User' }
 });

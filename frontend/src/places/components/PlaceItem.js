@@ -18,6 +18,7 @@ const PlaceItem = props => {
   };
 
   const confirmDeleteHandler = async () => {
+    // console.log('abc');
     try {
       await sendRequest(
         `http://localhost:5000/api/places/${props.id}`,
@@ -46,7 +47,7 @@ const PlaceItem = props => {
           <div className="place-item__info">
             <h2>{props.title}</h2>
             <h3>{props.description}</h3>
-            <p><strong>Package:</strong> {props.package || 'N/A'}</p>
+            <p><strong>LPA:</strong> {props.LPA || 'N/A'}</p>
             {isExpanded && (
             <div className="place-item__details">
               <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>

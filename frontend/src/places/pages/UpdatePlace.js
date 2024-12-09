@@ -16,12 +16,11 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './PlaceForm.css';
 
-const UpdatePlace = () => {
+const UpdatePlace = () => {  
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPlace, setLoadedPlace] = useState();
   const placeId = useParams().placeId;
-  console.log(placeId);
   
   const history = useHistory();
 
@@ -29,7 +28,7 @@ const UpdatePlace = () => {
     {
       title: { value: '', isValid: false },
       description: { value: '', isValid: false },
-      package: { value: '', isValid: false },
+      LPA: { value: '', isValid: false },
       contactNumber: { value: '', isValid: false },
       passoutYear: { value: '', isValid: false },
       image: { value: null, isValid: false },
@@ -42,15 +41,17 @@ const UpdatePlace = () => {
   useEffect(() => {
     const fetchPlace = async () => {
       try {
+        console.log('Fetching place data for ID:', placeId); // Debugging log
         const responseData = await sendRequest(
           `http://localhost:5000/api/places/${placeId}`
         );
+        console.log('Fetched place data:', responseData); // Debugging log
         setLoadedPlace(responseData.place);
         setFormData(
           {
             title: { value: responseData.place.title, isValid: true },
             description: { value: responseData.place.description, isValid: true },
-            package: { value: responseData.place.package, isValid: true },
+            LPA: { value: responseData.place.LPA, isValid: true },
             contactNumber: { value: responseData.place.contactNumber, isValid: true },
             passoutYear: { value: responseData.place.passoutYear, isValid: true },
             image: { value: responseData.place.image, isValid: true },
@@ -59,7 +60,9 @@ const UpdatePlace = () => {
           },
           true
         );
-      } catch (err) {}
+      } catch (err) {
+        console.error('Error fetching place data:', err); // Debugging log
+      }
     };
     fetchPlace();
   }, [sendRequest, placeId, setFormData]);
@@ -67,17 +70,23 @@ const UpdatePlace = () => {
   const placeUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
+      console.log('Form state inputs before submission:', formState.inputs); // Debugging log
+  
       const formData = new FormData();
       formData.append('title', formState.inputs.title.value || '');
       formData.append('description', formState.inputs.description.value || '');
-      formData.append('package', formState.inputs.package.value || '');
+      formData.append('LPA', formState.inputs.LPA.value || '');
       formData.append('contactNumber', formState.inputs.contactNumber.value || '');
       formData.append('passoutYear', formState.inputs.passoutYear.value || '');
+      
       if (formState.inputs.image.value) {
         formData.append('image', formState.inputs.image.value);
       }
+      
       formData.append('linkedIn', formState.inputs.linkedIn.value || '');
       formData.append('github', formState.inputs.github.value || '');
+  
+      console.log('Submitting updated place data:', Object.fromEntries(formData.entries())); // Log all formData
   
       await sendRequest(
         `http://localhost:5000/api/places/${placeId}`,
@@ -87,13 +96,14 @@ const UpdatePlace = () => {
           Authorization: 'Bearer ' + auth.token
         }
       );
+  
+      console.log('Place updated successfully!'); // Debugging log
       history.push('/' + auth.userId + '/places');
     } catch (err) {
-      console.error(err); // Log errors for debugging
+      console.error('Error updating place:', err); // Debugging log
     }
   };
   
-
   if (isLoading) {
     return (
       <div className="center">
@@ -139,14 +149,14 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <Input
-            id="package"
+            id="LPA"
             element="input"
             type="text"
-            label="Package"
+            label="LPA"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid package."
+            errorText="Please enter a valid LPA."
             onInput={inputHandler}
-            initialValue={loadedPlace.package}
+            initialValue={loadedPlace.LPA}
             initialValid={true}
           />
           <Input
