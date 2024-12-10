@@ -18,7 +18,6 @@ const PlaceItem = props => {
   };
 
   const confirmDeleteHandler = async () => {
-    // console.log('abc');
     try {
       await sendRequest(
         `http://localhost:5000/api/places/${props.id}`,
@@ -36,9 +35,9 @@ const PlaceItem = props => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <li className={`place-item ${isExpanded ? 'expanded' : ''}`}>
-        <Card className="place-item__content">
+        <Card className={`place-item__content ${isExpanded ? 'expanded-card' : ''}`}>
           {isLoading && <LoadingSpinner asOverlay />}
-          <div className="place-item__image">
+          <div className={`place-item__image ${isExpanded ? 'expanded-image' : ''}`}>
             <img
               src={`http://localhost:5000/${props.image}`}
               alt={props.title}
@@ -49,13 +48,13 @@ const PlaceItem = props => {
             <h3>{props.description}</h3>
             <p><strong>LPA:</strong> {props.LPA || 'N/A'}</p>
             {isExpanded && (
-            <div className="place-item__details">
-              <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
-              <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p>
-              <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
-              <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
-            </div>
-          )}
+              <div className="place-item__details">
+                <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
+                <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p>
+                <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
+                <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
+              </div>
+            )}
           </div>
           <div className="place-item__actions">
             <Button inverse onClick={toggleExpandHandler}>

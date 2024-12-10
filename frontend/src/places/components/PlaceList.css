@@ -1,29 +1,181 @@
+/* Card List Styling */
 .place-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(5, 1fr); /* Fit 5 cards per row */
+  gap: 1rem; /* Reduce space between the cards */
   list-style: none;
   padding: 0;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin: 1rem;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+/* Center the cards and filter elements */
 .place-list.center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  flex-direction: column;
+  gap: 1.5rem;
 }
+
+/* Styling for the search bar and filter button */
 .place-list__filter {
   margin: 1rem 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Space between the search bar and button */
 }
 
 .place-list__filter input {
   padding: 0.5rem;
   font-size: 1rem;
-  width: 50%;
+  width: 50%; /* Adjust width to 50% of the container */
   max-width: 300px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+.place-list__filter button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.place-list__filter button:hover {
+  background-color: #0056b3;
+}
+
+/* Adjusting Card Size */
+.place-item {
+  margin: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  display: flex; /* Use flexbox to control the size of the cards */
+  flex-direction: column; /* Stack the image and info vertically */
+  height: auto; /* Adjust the height of cards automatically */
+  width: 100%; /* Ensure cards take full width available in grid cell */
+}
+
+.place-item__content {
+  padding: 0.5rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  height: auto; /* Adjust the height of cards automatically */
+  display: flex;
+  flex-direction: column;
+}
+
+.place-item__image {
+  width: 100%;
+  height: 8rem; /* Decrease the height to make room for more cards */
+  transition: height 0.3s ease-in-out;
+}
+
+.place-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Card Info */
+.place-item__info {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.place-item__info h2,
+.place-item__info h3,
+.place-item__info p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem; /* Smaller font size */
+}
+
+/* Card Actions */
+.place-item__actions {
+  padding: 0.5rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-evenly; /* Distribute buttons evenly */
+  gap: 0.5rem; /* Add space between buttons */
+  align-items: center; /* Vertically center the buttons */
+}
+
+.place-item__actions button {
+  flex: 1;
+  margin: 0.3rem; /* Horizontal spacing between buttons */
+  padding: 0.5rem; /* Add padding for button size */
+  font-size: 1rem; /* Make the text uniform in size */
+  min-width: 90px; /* Ensure the buttons have a minimum width */
+  text-align: center;
+  white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+/* Optional: Set button colors for different actions */
+.place-item__actions button.inverse {
+  background-color: #f1f1f1;
+}
+
+.place-item__actions button.danger {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+/* For smaller screens, ensure buttons are responsive */
+@media (max-width: 1200px) {
+  .place-list {
+    grid-template-columns: repeat(4, 1fr); /* Four cards per row for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .place-list {
+    grid-template-columns: repeat(2, 1fr); /* Two cards per row for tablets */
+  }
+
+  .place-list__filter {
+    flex-direction: column;
+  }
+
+  .place-list__filter input {
+    width: 80%; /* Increase the width on smaller screens */
+    margin-bottom: 0.5rem;
+  }
+
+  .place-list__filter button {
+    width: 80%; /* Make the button wider for smaller screens */
+  }
+
+  .place-item__image {
+    height: 6rem; /* Adjust image height for smaller screens */
+  }
+
+  .place-item__info h2,
+  .place-item__info h3,
+  .place-item__info p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .place-list {
+    grid-template-columns: 1fr; /* One card per row for mobile screens */
+  }
+
+  .place-item__image {
+    height: 5rem; /* Smaller image height */
+  }
+
+  .place-item__info h2,
+  .place-item__info h3,
+  .place-item__info p {
+    font-size: 0.7rem;
+  }
 }

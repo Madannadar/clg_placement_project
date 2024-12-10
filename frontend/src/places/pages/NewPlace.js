@@ -48,7 +48,7 @@ const NewPlace = () => {
         value: '',
         isValid: false
       },
-      package: { 
+      LPA: { 
         value: '',
         isValid: false
       }
@@ -69,7 +69,7 @@ const NewPlace = () => {
       formData.append('image', formState.inputs.image.value);
       formData.append('linkedIn', formState.inputs.linkedIn.value);
       formData.append('github', formState.inputs.github.value);
-      formData.append('package', formState.inputs.package.value);
+      formData.append('LPA', formState.inputs.LPA.value);
       await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
@@ -100,12 +100,12 @@ const NewPlace = () => {
           onInput={inputHandler}
         />
         <Input
-          id="package" // Added the package input field here
+          id="LPA" // Added the LPA input field here
           element="input"
           type="text"
-          label="Package"
+          label="LPA"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid package."
+          errorText="Please enter a valid LPA."
           onInput={inputHandler}
         />
         <Input

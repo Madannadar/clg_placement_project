@@ -14,15 +14,15 @@ const PlaceList = (props) => {
     place.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Sort places based on the package value
+  // Sort places based on the LPA value
   const sortedPlaces = filteredPlaces.sort((a, b) => {
-    const packageA = a.package ? parseFloat(a.package) : 0;
-    const packageB = b.package ? parseFloat(b.package) : 0;
+    const LPAA = a.LPA ? parseFloat(a.LPA) : 0;
+    const LPAB = b.LPA ? parseFloat(b.LPA) : 0;
 
     if (sortOrder === 'asc') {
-      return packageA - packageB; // Ascending order
+      return LPAA - LPAB; // Ascending order
     } else {
-      return packageB - packageA; // Descending order
+      return LPAB - LPAA; // Descending order
     }
   });
 
@@ -51,7 +51,7 @@ const PlaceList = (props) => {
       {/* Sort Button */}
       <div className="place-list__filter">
         <button onClick={toggleSortOrderHandler}>
-          Sort by Package ({sortOrder === 'asc' ? 'Greater to Lower' : 'Lower to Greater'})
+          Sort by LPA ({sortOrder === 'asc' ? 'Greater to Lower' : 'Lower to Greater'})
         </button>
       </div>
 
@@ -87,7 +87,7 @@ const PlaceList = (props) => {
               address={place.address}
               creatorId={place.creator}
               coordinates={place.location}
-              package={place.package}
+              LPA={place.LPA}
               passoutYear={place.passoutYear} // Ensure 'passoutYear' is passed as prop
               contactNumber={place.contactNumber} // Ensure 'contactNumber' is passed as prop
               linkedIn={place.linkedIn} // Ensure 'linkedIn' is passed as prop
