@@ -95,14 +95,13 @@ const updatePlace = async (req, res, next) => {
   console.log(req.body, req.params.pid);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log("Validation errors:", errors.array()); // the value coming are undefined 
+    console.log("Validation errors:", errors.array());
     return next(new HttpError('Invalid inputs passed, please check your data.', 422));
-}
-
+  }
 
   const { title, description, passoutYear, contactNumber, linkedIn, github, LPA } = req.body;
   const placeId = req.params.pid;
-  // console.log("placeId");
+
   let place;
   try {
     place = await Place.findById(placeId);
@@ -120,27 +119,17 @@ const updatePlace = async (req, res, next) => {
   place.contactNumber = contactNumber;
   place.linkedIn = linkedIn;
   place.github = github;
-  place.LPA = LPA; // Update 'LPA' field
+  place.LPA = LPA;
 
   console.log("Payload being sent:", {
-  title,
-  description,
-  passoutYear,
-  contactNumber,
-  linkedIn,
-  github,
-  LPA,
-});
-
-
-  if (req.file) {
-    const oldImagePath = place.image;
-    place.image = req.file.path;
-
-    fs.unlink(oldImagePath, err => {
-      if (err) console.log(err);
-    });
-  }
+    title,
+    description,
+    passoutYear,
+    contactNumber,
+    linkedIn,
+    github,
+    LPA
+  });
 
   try {
     await place.save();
@@ -151,6 +140,8 @@ const updatePlace = async (req, res, next) => {
   res.status(200).json({ place: place.toObject({ getters: true }) });
 };
 
+exports.updatePlace = updatePlace;
+
 // Delete Place
 const deletePlace = async (req, res, next) => {
   const placeId = req.params.pid;
@@ -158,15 +149,19 @@ const deletePlace = async (req, res, next) => {
   let place;
   try {
     place = await Place.findById(placeId).populate('creator');
+    console.log('Fetched place:', place);
   } catch (err) {
+    console.error('Error fetching place:', err);
     return next(new HttpError('Something went wrong, could not delete place.', 500));
   }
 
   if (!place) {
+    console.warn(`Place with ID ${placeId} not found.`);
     return next(new HttpError('Could not find place for this id.', 404));
   }
 
-  if (place.creator.id !== req.userData.userId) {
+  if (place.creator.id.toString() !== req.userData.userId.toString()) {
+    console.warn('Unauthorized delete attempt by user:', req.userData.userId);
     return next(new HttpError('You are not allowed to delete this place.', 401));
   }
 
@@ -175,20 +170,30 @@ const deletePlace = async (req, res, next) => {
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
-    await place.remove({ session: sess });
+    await Place.deleteOne({ _id: placeId }, { session: sess }); // Updated method
     place.creator.places.pull(place);
     await place.creator.save({ session: sess });
     await sess.commitTransaction();
+    console.log('Place deleted successfully:', placeId);
   } catch (err) {
+    console.error('Error during deletion process:', err);
     return next(new HttpError('Something went wrong, could not delete place.', 500));
   }
 
-  fs.unlink(imagePath, err => {
-    console.log(err);
+  // After a successful transaction
+  fs.unlink(imagePath, (err) => {
+    if (err) {
+      console.error('Failed to delete image file:', err);
+    } else {
+      console.log('Image file deleted successfully:', imagePath);
+    }
   });
 
   res.status(200).json({ message: 'Deleted place.' });
 };
+
+
+
 
 exports.getPlaceById = getPlaceById;
 exports.getPlacesByUserId = getPlacesByUserId;

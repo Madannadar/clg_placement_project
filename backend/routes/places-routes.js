@@ -7,59 +7,41 @@ const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.get('/:pid', placesControllers.getPlaceById);
+router.get('/:pid', placesControllers.getPlaceById); // Ensure getPlaceById is defined
+router.get('/user/:uid', placesControllers.getPlacesByUserId); // Ensure getPlacesByUserId is defined
 
-router.get('/user/:uid', placesControllers.getPlacesByUserId);
-
-router.use(checkAuth);
+router.use(checkAuth); // Ensure checkAuth is defined
 
 router.post(
   '/',
-  fileUpload.single('image'),
+  fileUpload.single('image'), // Ensure fileUpload is properly imported
   [
-    check('title')
-      .not()
-      .isEmpty(),
+    check('title').not().isEmpty(),
     check('description').isLength({ min: 5 }),
-    check('passoutYear')
-      .not()
-      .isEmpty(), // Updated from address to passoutYear
-    check('contactNumber')
-      .not()
-      .isEmpty(), // Added contact number validation
-    check('linkedIn')
-      .not()
-      .isEmpty(), // Added LinkedIn link validation
-    check('github')
-      .not()
-      .isEmpty(), // Added GitHub link validation
+    check('passoutYear').not().isEmpty(),
+    check('contactNumber').not().isEmpty(),
+    check('linkedIn').not().isEmpty(),
+    check('github').not().isEmpty(),
+    check('LPA').not().isEmpty(),
   ],
-  placesControllers.createPlace
+  placesControllers.createPlace // Ensure createPlace is defined
 );
 
 router.patch(
   '/:pid',
   [
-    check('title')
-      .not()
-      .isEmpty(),
+    check('title').not().isEmpty(),
     check('description').isLength({ min: 5 }),
-    check('passoutYear')
-      .not()
-      .isEmpty(), // Validate passoutYear during updates
-    check('contactNumber')
-      .not()
-      .isEmpty(), // Validate contact number during updates
-    check('linkedIn')
-      .not()
-      .isEmpty(), // Validate LinkedIn link during updates
-    check('github')
-      .not()
-      .isEmpty(), // Validate GitHub link during updates
+    check('passoutYear').not().isEmpty(),
+    check('contactNumber').not().isEmpty(),
+    check('linkedIn').not().isEmpty(),
+    check('github').not().isEmpty(),
+    check('LPA').not().isEmpty(),
   ],
-  placesControllers.updatePlace
+  placesControllers.updatePlace // Ensure updatePlace is defined
 );
 
-router.delete('/:pid', placesControllers.deletePlace);
+router.delete('/:pid', placesControllers.deletePlace); // Ensure deletePlace is defined
+console.log(placesControllers);
 
 module.exports = router;

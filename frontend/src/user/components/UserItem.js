@@ -19,7 +19,7 @@ const UserItem = props => {
   <h2>{props.name}</h2>
   <h3>
     {props.placeCount} {props.placeCount === 1 ? 'Student' : 'Students'} 
-    ({((props.placeCount / 70) * 100).toFixed(2)}%)
+    ({((props.placeCount / 630) * 100).toFixed(2)}%)
   </h3>
 </div>
 
