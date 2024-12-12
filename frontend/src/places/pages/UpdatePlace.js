@@ -31,7 +31,8 @@ const UpdatePlace = () => {
       contactNumber: { value: '', isValid: false },
       passoutYear: { value: '', isValid: false },
       linkedIn: { value: '', isValid: false },
-      github: { value: '', isValid: false }
+      github: { value: '', isValid: false },
+      branch: { value: '', isValid: false } // Added branch to form state
     },
     false
   );
@@ -53,7 +54,8 @@ const UpdatePlace = () => {
             contactNumber: { value: responseData.place.contactNumber, isValid: true },
             passoutYear: { value: responseData.place.passoutYear, isValid: true },
             linkedIn: { value: responseData.place.linkedIn, isValid: true },
-            github: { value: responseData.place.github, isValid: true }
+            github: { value: responseData.place.github, isValid: true },
+            branch: { value: responseData.place.branch, isValid: true } // Added branch data
           },
           true
         );
@@ -76,7 +78,8 @@ const UpdatePlace = () => {
         contactNumber: formState.inputs.contactNumber.value || '',
         passoutYear: formState.inputs.passoutYear.value || '',
         linkedIn: formState.inputs.linkedIn.value || '',
-        github: formState.inputs.github.value || ''
+        github: formState.inputs.github.value || '',
+        branch: formState.inputs.branch.value || '' // Added branch to submission data
       };
 
       console.log('Submitting updated place data:', updatedPlaceData);
@@ -136,7 +139,7 @@ const UpdatePlace = () => {
             id="description"
             element="textarea"
             label="Placed Company"
-            validators={[VALIDATOR_MINLENGTH(5)]}
+            validators={[VALIDATOR_MINLENGTH(3)]}
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
             initialValue={loadedPlace.description}
@@ -195,6 +198,17 @@ const UpdatePlace = () => {
             errorText="Please enter a valid GitHub profile link."
             onInput={inputHandler}
             initialValue={loadedPlace.github}
+            initialValid={true}
+          />
+          <Input
+            id="branch"
+            element="input"
+            type="text"
+            label="Branch"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid branch."
+            onInput={inputHandler}
+            initialValue={loadedPlace.branch}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>

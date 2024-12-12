@@ -51,7 +51,7 @@ const createPlace = async (req, res, next) => {
     return next(new HttpError('Invalid inputs passed, please check your data.', 422));
   }
 
-  const { title, description, passoutYear, contactNumber, linkedIn, github, LPA } = req.body;
+  const { title, description, passoutYear, contactNumber, linkedIn, github, LPA, branch } = req.body;
 
   const createdPlace = new Place({
     title,
@@ -60,7 +60,8 @@ const createPlace = async (req, res, next) => {
     contactNumber,
     linkedIn,
     github,
-    LPA, // Add 'LPA' field
+    LPA,
+    branch, // Add 'branch' field
     image: req.file.path,
     creator: req.userData.userId
   });
@@ -92,14 +93,12 @@ const createPlace = async (req, res, next) => {
 
 // Update Place
 const updatePlace = async (req, res, next) => {
-  console.log(req.body, req.params.pid);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log("Validation errors:", errors.array());
     return next(new HttpError('Invalid inputs passed, please check your data.', 422));
   }
 
-  const { title, description, passoutYear, contactNumber, linkedIn, github, LPA } = req.body;
+  const { title, description, passoutYear, contactNumber, linkedIn, github, LPA, branch } = req.body;
   const placeId = req.params.pid;
 
   let place;
@@ -120,16 +119,7 @@ const updatePlace = async (req, res, next) => {
   place.linkedIn = linkedIn;
   place.github = github;
   place.LPA = LPA;
-
-  console.log("Payload being sent:", {
-    title,
-    description,
-    passoutYear,
-    contactNumber,
-    linkedIn,
-    github,
-    LPA
-  });
+  place.branch = branch; // Update branch field
 
   try {
     await place.save();
@@ -139,6 +129,7 @@ const updatePlace = async (req, res, next) => {
 
   res.status(200).json({ place: place.toObject({ getters: true }) });
 };
+
 
 exports.updatePlace = updatePlace;
 

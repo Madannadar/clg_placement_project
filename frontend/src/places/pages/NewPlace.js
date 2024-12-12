@@ -32,7 +32,7 @@ const NewPlace = () => {
         value: '',
         isValid: false
       },
-      passoutYear: { // Replaced Address with Passout Year
+      passoutYear: {
         value: '',
         isValid: false
       },
@@ -48,7 +48,11 @@ const NewPlace = () => {
         value: '',
         isValid: false
       },
-      LPA: { 
+      LPA: {
+        value: '',
+        isValid: false
+      },
+      branch: { // Added branch field
         value: '',
         isValid: false
       }
@@ -70,6 +74,7 @@ const NewPlace = () => {
       formData.append('linkedIn', formState.inputs.linkedIn.value);
       formData.append('github', formState.inputs.github.value);
       formData.append('LPA', formState.inputs.LPA.value);
+      formData.append('branch', formState.inputs.branch.value); // Include branch field in form data
       await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
@@ -95,12 +100,12 @@ const NewPlace = () => {
           id="description"
           element="textarea"
           label="Placed Company"
-          validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Please enter a valid description (at least 5 characters)."
+          validators={[VALIDATOR_MINLENGTH(3)]}
+          errorText="Please enter a valid description (at least 3 characters)."
           onInput={inputHandler}
         />
         <Input
-          id="LPA" // Added the LPA input field here
+          id="LPA"
           element="input"
           type="text"
           label="LPA"
@@ -124,6 +129,15 @@ const NewPlace = () => {
           label="Passout Year"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid passout year."
+          onInput={inputHandler}
+        />
+        <Input
+          id="branch" // Added branch input field here
+          element="input"
+          type="text"
+          label="Branch"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid branch."
           onInput={inputHandler}
         />
         <ImageUpload

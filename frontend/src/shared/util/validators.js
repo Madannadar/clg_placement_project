@@ -8,10 +8,11 @@ const VALIDATOR_TYPE_FILE = 'FILE';
 
 export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
 export const VALIDATOR_FILE = () => ({ type: VALIDATOR_TYPE_FILE });
-export const VALIDATOR_MINLENGTH = val => ({
+export const VALIDATOR_MINLENGTH = minLength => ({
   type: VALIDATOR_TYPE_MINLENGTH,
-  val: val
+  val: minLength
 });
+
 export const VALIDATOR_MAXLENGTH = val => ({
   type: VALIDATOR_TYPE_MAXLENGTH,
   val: val

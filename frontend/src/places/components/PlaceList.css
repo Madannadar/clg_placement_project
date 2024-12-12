@@ -179,3 +179,22 @@
     font-size: 0.7rem;
   }
 }
+.place-list__filter .branch-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.place-list__filter .branch-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.place-list__filter .branch-checkbox input {
+  margin-right: 5px;
+}
+
+.place-list__filter button {
+  margin-top: 10px;
+}

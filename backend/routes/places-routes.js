@@ -23,6 +23,7 @@ router.post(
     check('linkedIn').not().isEmpty(),
     check('github').not().isEmpty(),
     check('LPA').not().isEmpty(),
+    check('branch').not().isEmpty() // Added validation for 'branch'
   ],
   placesControllers.createPlace // Ensure createPlace is defined
 );
@@ -37,6 +38,7 @@ router.patch(
     check('linkedIn').not().isEmpty(),
     check('github').not().isEmpty(),
     check('LPA').not().isEmpty(),
+    check('branch').not().isEmpty() // Added validation for 'branch'
   ],
   placesControllers.updatePlace // Ensure updatePlace is defined
 );
