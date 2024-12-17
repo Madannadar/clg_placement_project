@@ -61,20 +61,23 @@
 }
 
 .place-item__content {
-  padding: 0.5rem;
+  padding: 0; /* Remove inner padding for a clean design */
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  height: auto; /* Adjust the height of cards automatically */
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  height: 28rem; /* Make the card taller */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .place-item__image {
-  width: 100%;
-  height: 8rem; /* Decrease the height to make room for more cards */
-  transition: height 0.3s ease-in-out;
+  flex: 0 0 60%; /* Image takes 70% of the card height */
+  overflow: hidden;
+  border-radius: 12px 12px 0 0; /* Round corners only at the top */
+  transition: height 0.3s ease;
 }
 
 .place-item__image img {
@@ -179,22 +182,72 @@
     font-size: 0.7rem;
   }
 }
-.place-list__filter .branch-filter {
+.branch-filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.place-list__filter .branch-checkbox {
+/* Individual Checkbox Container */
+.branch-checkbox {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.place-list__filter .branch-checkbox input {
-  margin-right: 5px;
+.branch-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff; /* Checkbox color when checked */
+  cursor: pointer;
 }
 
-.place-list__filter button {
-  margin-top: 10px;
+/* Hover Effect */
+.branch-checkbox:hover {
+  transform: translateY(-2px);
+  color: #007bff;
+}
+
+/* Button Styling */
+.place-list__filter Button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.place-list__filter Button:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .branch-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .branch-checkbox {
+    font-size: 0.9rem;
+  }
+
+  .place-list__filter Button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
 }

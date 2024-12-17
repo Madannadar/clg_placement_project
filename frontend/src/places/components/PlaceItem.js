@@ -50,7 +50,7 @@ const PlaceItem = props => {
             {isExpanded && (
               <div className="place-item__details">
                 <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
-                <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p>
+                {/* <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p> */}
                 <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
                 <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
                 <p><strong>Branch:</strong> {props.branch || 'N/A'}</p>

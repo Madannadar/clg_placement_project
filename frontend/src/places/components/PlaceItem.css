@@ -1,198 +1,191 @@
 /* Place List Grid */
 .place-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Five cards per row on large screens */
-  gap: 1rem; /* Spacing between cards */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-fit responsive cards */
+  gap: 1.5rem; /* More space between cards */
   list-style: none;
-  padding: 0;
-  margin: 1rem;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  padding: 1rem;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 /* Default Card Layout */
 .place-item {
-  margin: 0.5rem;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+.place-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .place-item__content {
-  padding: 0.5rem;
+  padding: 1rem;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.place-item__content:hover {
+  background-color: #f8f9fa; /* Subtle background change on hover */
 }
 
 /* Card Image */
 .place-item__image {
   width: 100%;
-  height: 10rem; /* Smaller height for the image */
-  transition: height 0.3s ease-in-out;
+  height: 12rem;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: height 0.3s ease;
 }
 
 .place-item__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.place-item__image img:hover {
+  transform: scale(1.05); /* Smooth zoom effect on hover */
 }
 
 /* Card Info */
 .place-item__info {
-  padding: 0.5rem;
+  padding: 0.8rem 0;
   text-align: center;
 }
 
-.place-item__info h2,
+.place-item__info h2 {
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
 .place-item__info h3,
 .place-item__info p {
   margin: 0.3rem 0;
-  font-size: 0.9rem; /* Smaller font size */
+  color: #666;
+  font-size: 0.95rem;
 }
 
-/* Card Actions */
 /* Card Actions */
 .place-item__actions {
-  padding: 0.5rem;
-  text-align: center;
-  border-top: 1px solid #ccc;
-  display: flex; /* Use flexbox for equal button width */
-  justify-content: space-between; /* Distribute buttons evenly */
-  align-items: center; /* Vertically center buttons */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid #e0e0e0;
 }
 
-/* Styling for the buttons */
 .place-item__actions button,
 .place-item__actions a {
-  margin: 0.3rem; /* Small margin around buttons */
-  font-size: 1rem; /* Set a uniform font size for all buttons */
-  padding: 0.5rem; /* Consistent padding inside buttons */
-  flex-grow: 1; /* Allow buttons to grow and take equal space */
-  text-align: center; /* Center text inside buttons */
-  min-width: 120px; /* Ensure buttons have a minimum width */
-  border-radius: 5px; /* Rounded corners for buttons */
-  background-color: #f1f1f1; /* Background color for buttons */
-  border: 1px solid #ccc; /* Border to give buttons a clean look */
-  color: black; /* Set text color to black */
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Optional: Button color changes */
+.place-item__actions button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.place-item__actions button:hover {
+  background-color: #0056b3;
+}
+
 .place-item__actions button.inverse {
-  background-color: #e0e0e0;
+  background-color: #ffcc00;
+  color: #333;
+}
+
+.place-item__actions button.inverse:hover {
+  background-color: #e6b800;
 }
 
 .place-item__actions button.danger {
-  background-color: #ff4d4d;
-  color: white; /* Text color for danger button */
+  background-color: #e63946;
+  color: #fff;
 }
 
-/* For small screens, ensure buttons are responsive */
-@media (max-width: 768px) {
-  .place-item__actions {
-    flex-direction: column; /* Stack buttons vertically on small screens */
-    align-items: stretch; /* Ensure buttons stretch to fill available width */
-  }
-
-  .place-item__actions button,
-  .place-item__actions a {
-    margin: 0.3rem 0; /* Adjust margin for stacked buttons */
-    min-width: 100%; /* Ensure buttons fill the full width on mobile */
-  }
+.place-item__actions button.danger:hover {
+  background-color: #c62828;
 }
 
-
-/* Expanded Card (Optional) */
+/* Expanded Card */
+/* Expanded Card Styling */
 .place-item.expanded {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 50rem;
-  height: 90%; /* Take most of the screen */
   z-index: 1000;
+  width: 40%; /* Make the card take more width when expanded */
+  max-width: 60rem; /* Increase the max-width for larger cards */
+  height: 90%;
   background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3); /* More shadow for emphasis */
   border-radius: 12px;
   overflow-y: auto;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Image in Expanded View */
+/* Image takes 70% of the expanded card */
 .place-item.expanded .place-item__image {
-  height: 25rem; /* Larger image when expanded */
-  margin-bottom: 1rem;
+  flex: 0 0 50%; /* Maintain 70% height for image */
+  height: 25rem; /* Increase image height on expansion */
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
 }
 
-/* Info in Expanded Mode */
-.place-item.expanded .place-item__info {
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.2rem;
+.place-item.expanded .place-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.place-item.expanded .place-item__info h2 {
-  font-size: 2rem;
+/* Content below image */
+.place-item.expanded .place-item__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  padding: 1rem; /* Add padding to content */
+  box-shadow: none;
 }
 
-/* Details in Expanded Mode */
-.place-item.expanded .place-item__details {
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  margin-top: 1rem;
-}
-
-.place-item.expanded .place-item__details p {
-  font-size: 1rem;
-}
-
-/* Card Actions in Expanded Mode */
+/* Buttons remain the same size but are now inside a larger card */
 .place-item.expanded .place-item__actions {
-  padding: 1rem;
-  text-align: center;
-  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+  padding: 0.8rem;
 }
 
 .place-item.expanded .place-item__actions button {
-  font-size: 1.2rem;
-  padding: 1rem 2rem;
+  flex: 1; /* Ensure all buttons are equal in size */
+  padding: 0.8rem;
+  font-size: 1rem;
+  text-align: center;
+  min-width: 100px; /* Slightly larger minimum width for buttons */
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .place-list {
-    grid-template-columns: repeat(4, 1fr); /* Four cards per row for smaller screens */
+/* Optional: Ensure the card keeps the smooth fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
   }
-}
-
-@media (max-width: 768px) {
-  .place-list {
-    grid-template-columns: repeat(2, 1fr); /* Two cards per row for tablets */
-  }
-
-  .place-item__image {
-    height: 8rem; /* Adjust image height for smaller screens */
-  }
-
-  .place-item__info h2,
-  .place-item__info h3,
-  .place-item__info p {
-    font-size: 0.8rem;
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }
 
-@media (max-width: 480px) {
-  .place-list {
-    grid-template-columns: 1fr; /* One card per row for mobile screens */
-  }
-
-  .place-item__image {
-    height: 6rem; /* Smaller image height */
-  }
-
-  .place-item__info h2,
-  .place-item__info h3,
-  .place-item__info p {
-    font-size: 0.7rem;
-  }
-}
