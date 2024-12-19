@@ -5,18 +5,22 @@ import Button from '../../shared/components/FormElements/Button';
 import './PlaceList.css';
 
 const PlaceList = (props) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); // Title search term
+  const [descriptionSearchTerm, setDescriptionSearchTerm] = useState(''); // Description search term
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending and 'desc' for descending
   const [branchFilter, setBranchFilter] = useState([]); // State to hold selected branches
   const [isBranchListVisible, setIsBranchListVisible] = useState(false); // State to toggle visibility of branch list
 
   const availableBranches = ['CE', 'IT', 'AIML', 'EXTC', 'MECH', 'IOT', 'AIDS']; // Available branches
 
-  // Filter places based on the search term and selected branches
+  // Filter places based on the search term (title, description) and selected branches
   const filteredPlaces = props.items.filter((place) => {
-    const matchesSearch = place.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesTitleSearch = place.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesDescriptionSearch = place.description.toLowerCase().includes(descriptionSearchTerm.toLowerCase());
     const matchesBranch = branchFilter.length === 0 || branchFilter.includes(place.branch);
-    return matchesSearch && matchesBranch;
+
+    // Ensure it matches either title or description search and branch filter
+    return matchesTitleSearch && matchesDescriptionSearch && matchesBranch;
   });
 
   // Sort places based on LPA value
@@ -31,9 +35,14 @@ const PlaceList = (props) => {
     }
   });
 
-  // Update the search term state on input change
+  // Update the search term state on input change for title
   const searchChangeHandler = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  // Update the description search term state on input change
+  const descriptionSearchChangeHandler = (event) => {
+    setDescriptionSearchTerm(event.target.value);
   };
 
   // Toggle sorting order between ascending and descending
@@ -58,13 +67,23 @@ const PlaceList = (props) => {
 
   return (
     <React.Fragment>
-      {/* Search Input */}
+      {/* Title Search Input */}
       <div className="place-list__filter">
         <input
           type="text"
           placeholder="Search by name..."
           value={searchTerm}
           onChange={searchChangeHandler}
+        />
+      </div>
+
+      {/* Description Search Input */}
+      <div className="place-list__filter">
+        <input
+          type="text"
+          placeholder="Search by description..."
+          value={descriptionSearchTerm}
+          onChange={descriptionSearchChangeHandler}
         />
       </div>
 
@@ -100,7 +119,7 @@ const PlaceList = (props) => {
       </div>
 
       {/* Render "Search Not Found" message if no results found for search */}
-      {sortedPlaces.length === 0 && searchTerm.trim().length > 0 && (
+      {sortedPlaces.length === 0 && (searchTerm.trim().length > 0 || descriptionSearchTerm.trim().length > 0) && (
         <div className="place-list center">
           <Card>
             <h2>Search Not Found</h2>
@@ -109,7 +128,7 @@ const PlaceList = (props) => {
       )}
 
       {/* Render "No places found" message with "Share Place" button if no places are available */}
-      {sortedPlaces.length === 0 && searchTerm.trim().length === 0 && (
+      {sortedPlaces.length === 0 && searchTerm.trim().length === 0 && descriptionSearchTerm.trim().length === 0 && (
         <div className="place-list center">
           <Card>
             <h2>No places found.</h2>
