@@ -49,25 +49,25 @@ const PlaceItem = props => {
             <p><strong>LPA:</strong> {props.LPA || 'N/A'}</p>
             {isExpanded && (
               <div className="place-item__details">
+                <p><strong>Branch:</strong> {props.branch || 'N/A'}</p>
                 <p><strong>Passout Year:</strong> {props.passoutYear || 'N/A'}</p>
                 {/* <p><strong>Contact Number:</strong> {props.contactNumber || 'N/A'}</p> */}
                 <p><strong>LinkedIn:</strong> <a href={props.linkedIn || '#'} target="_blank" rel="noopener noreferrer">{props.linkedIn || 'N/A'}</a></p>
                 <p><strong>GitHub:</strong> <a href={props.github || '#'} target="_blank" rel="noopener noreferrer">{props.github || 'N/A'}</a></p>
-                <p><strong>Branch:</strong> {props.branch || 'N/A'}</p>
               </div>
             )}
 
           </div>
           <div className="place-item__actions">
             <Button inverse onClick={toggleExpandHandler}>
-              {isExpanded ? 'SHOW LESS' : 'VIEW MORE'}
+              {isExpanded ? 'Show Less' : 'View More'}
             </Button>
             {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>EDIT</Button>
+              <Button to={`/places/${props.id}`}>Edit</Button>
             )}
             {auth.userId === props.creatorId && (
               <Button danger onClick={confirmDeleteHandler}>
-                DELETE
+                Delete
               </Button>
             )}
           </div>
