@@ -27,11 +27,14 @@
   gap: 1rem; /* Space between the search bar and button */
 }
 
+.place-list__filter.searchbar {
+  flex: 1;
+}
+
 .place-list__filter input {
+  flex: 1;
   padding: 0.5rem;
   font-size: 1rem;
-  width: 50%; /* Adjust width to 50% of the container */
-  max-width: 300px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
