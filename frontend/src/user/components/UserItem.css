@@ -1,49 +1,110 @@
 .user-item {
-  margin: 1rem;
-  width: calc(45% - 2rem);
-  min-width: 17.5rem;
-}
-
-.user-item a {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  padding: 1rem;
-  color: white;
-  background: #292929;
-}
-
-.user-item a:hover,
-.user-item a:active {
-  background: #ffd900;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  flex: 0 1 calc(25% - 1rem); 
 }
 
 .user-item__content {
-  padding: 0;
+  transition: transform .3s ease; /* Smooth transition for scaling */}
+
+.user-item a {
+  /* position: absolute; */
+  display: flex;
+  align-items: flex-start; /* Align items at the start */
+  gap: 20px;
+  width: 100%;
+  height: auto; /* Adjust height */
+  text-decoration: none;
+  padding: 1rem;
+  color: white;
+  background: #121212; /* Match course card background */
 }
+/* 
+.user-item:nth-child(2n) .user-item__content a .ag-courses-item_bg {
+
+} */
+
+.user-item:nth-child(2n) .user-item__content a .ag-courses-item_bg {
+  background-color: #3ecd5e;
+}
+
+.user-item:nth-child(3n) .user-item__content a .ag-courses-item_bg {
+  background-color: #e44002;
+}
+
+.user-item:nth-child(4n) .user-item__content a .ag-courses-item_bg {
+  background-color: #952aff;
+}
+
+.user-item:nth-child(5n) .user-item__content a .ag-courses-item_bg {
+  background-color: #cd3e94;
+}
+
+.user-item:nth-child(6n) .user-item__content a .ag-courses-item_bg {
+  background-color: #4c49ea;
+}
+
+
+.ag-courses-item_bg {
+  height: 128px;
+  width: 128px;
+  
+  position: absolute;
+  top: -60px;
+  right: -60px;
+
+  border-radius: 50%; /* Circular shape */
+  
+  transition: all .5s ease; /* Smooth transition */
+
+  z-index: 5;
+
+  background-color: #cd3e94;
+}
+
 
 .user-item__image {
   width: 4rem;
   height: 4rem;
-  margin-right: 1rem;
+
+  z-index: 15;
+}
+
+.ag-courses-item_title {
+  font-size: 1.5rem; /* Adjusted font size */
+}
+
+.user-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  z-index: 10;
 }
 
 .user-item__info h2 {
-  font-size: 1.5rem;
-  margin: 0 0 0.5rem 0;
-  font-weight: normal;
-  color: #ffd900;
-}
-
-.user-item:hover h2,
-.user-item:active h2,
-.user-item:hover h3,
-.user-item:active h3 {
-  color: #292929;
+  color: #FFF; 
+  margin: 0;
 }
 
 .user-item__info h3 {
+  color: #FFF; 
   margin: 0;
+}
+
+.user-item a:hover .ag-courses-item_bg {
+   transform: scale(10); /* Scale effect on hover */
+}
+
+@media screen and (max-width: 1000px) {
+  .user-item {
+    flex: 0 1 calc(50% - 1rem); 
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user-item {
+    flex: 0 1 100% ; 
+  }
 }

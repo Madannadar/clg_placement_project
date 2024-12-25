@@ -20,7 +20,7 @@
 
 /* Styling for the search bar and filter button */
 .place-list__filter {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -40,8 +40,8 @@
 }
 
 .place-list__filter button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  padding: 0.4rem 0.8rem; /* Adjusted padding */
+  font-size: 0.8rem; 
   background-color: #007bff;
   color: white;
   border: none;
@@ -117,8 +117,8 @@
 .place-item__actions button {
   flex: 1;
   margin: 0.3rem; /* Horizontal spacing between buttons */
-  padding: 0.5rem; /* Add padding for button size */
-  font-size: 1rem; /* Make the text uniform in size */
+  padding: 0.4rem; /* Adjusted padding for smaller size */
+  font-size: 0.9rem; /* Smaller font size */
   min-width: 90px; /* Ensure the buttons have a minimum width */
   text-align: center;
   white-space: nowrap; /* Prevent button text from wrapping */
@@ -138,6 +138,28 @@
 @media (max-width: 1200px) {
   .place-list {
     grid-template-columns: repeat(4, 1fr); /* Four cards per row for smaller screens */
+  }
+
+  .place-item__content {
+    height: 24rem; /* Adjust content height */
+  }
+
+  .place-item__image {
+    flex: 0 0 55%; /* Adjust image height for smaller screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .place-list {
+    grid-template-columns: repeat(3, 1fr); /* Three cards per row for medium screens */
+  }
+
+  .place-item__content {
+    height: 22rem; /* Adjust card height */
+  }
+
+  .place-item__image {
+    flex: 0 0 50%; /* Adjust image size */
   }
 }
 
@@ -164,8 +186,8 @@
 
   .place-list__filter button,
   .place-list__filter .branch-filter-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 0.4rem 0.8rem; /* Adjusted padding */
+    font-size: 0.8rem; /* Smaller font size */
     background-color: #007bff;
     color: white;
     border: none;
@@ -204,6 +226,8 @@
     font-size: 0.7rem;
   }
 }
+
+/* Branch filter styling */
 .branch-filter {
   display: flex;
   flex-wrap: wrap;
@@ -212,7 +236,6 @@
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  /* background-color: white; */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -221,7 +244,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Adjusted font size */
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -245,9 +268,9 @@
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Adjusted padding */
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 0.8rem; /* Smaller font size */
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -265,11 +288,11 @@
   }
 
   .branch-checkbox {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Adjusted font size for smaller screens */
   }
 
   .place-list__filter Button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem; /* Adjusted font size */
+    padding: 0.4rem 0.8rem; /* Adjusted padding */
   }
 }

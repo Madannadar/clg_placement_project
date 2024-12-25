@@ -96,7 +96,7 @@ const PlaceList = (props) => {
         <div className="place-list__filter searchbar">
           <input
             type="text"
-            placeholder="Search by Placed company..."
+            placeholder="Search by description..."
             value={descriptionSearchTerm}
             onChange={descriptionSearchChangeHandler}
           />

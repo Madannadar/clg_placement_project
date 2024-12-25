@@ -23,18 +23,23 @@
 }
 
 .place-item__content {
-  /* padding: 1rem; */
+  padding: 1rem; /* Adjusted padding to keep content smaller within the card */
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
-  width: calc(100% - 1px); 
+  border-radius: 12px; /* Keeps the rounded corners */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  /* transition: box-shadow 0.3s ease, background-color 0.3s ease; */
+  /* width: calc(100% - 40px); Compensate for 20px border on both sides */
+  box-sizing: border-box; /* Ensure border is part of the card dimensions */
+  border: 9px solid #ffffff; 
+  text-align: left;
 }
 
 .place-item__content:hover {
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: #ffffff; /* Darker border on hover for contrast */
 }
+
 
 /* Card Image */
 .place-item__image {
@@ -67,6 +72,18 @@
   color: #333;
   margin: 0.5rem 0;
   font-weight: bold;
+  text-align: left;
+  position: relative; /* This allows positioning of the pseudo-element */
+}
+
+.place-item__info h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%; /* Adjust width of the line */
+  height: 2px; /* Line thickness */
+  background-color: #0056b3; /* Cyan color */
 }
 
 .place-item__info h3,
@@ -74,6 +91,8 @@
   margin: 0.3rem 0;
   color: #666;
   font-size: 0.95rem;
+  text-align: left;
+
 }
 
 /* Card Actions */
@@ -89,24 +108,26 @@
 .place-item__actions button,
 .place-item__actions a {
   flex: 1; 
-  padding: 0.6rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem; 
   text-align: center;
+  padding: 0.6rem;
+  min-height: 40px; 
+  line-height: 1.2; 
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   margin: 0 0.2rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Specific button styles remain unchanged */
 .place-item__actions button {
+  /* font-size: 3rem; */
   background-color: #007bff;
   color: #fff;
-  /* font-size: 10px; */
-}
-
-.place-item__actions button:hover {
-  background-color: #0056b3;
 }
 
 .place-item__actions button.inverse {
@@ -114,13 +135,18 @@
   color: #333;
 }
 
-.place-item__actions button.inverse:hover {
-  background-color: #e6b800;
-}
-
 .place-item__actions button.danger {
   background-color: #e63946;
   color: #fff;
+}
+
+/* Hover effects remain the same */
+.place-item__actions button:hover {
+  background-color: #0056b3;
+}
+
+.place-item__actions button.inverse:hover {
+  background-color: #e6b800;
 }
 
 .place-item__actions button.danger:hover {
