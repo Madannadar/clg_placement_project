@@ -17,8 +17,8 @@
   height: auto; /* Adjust height */
   text-decoration: none;
   padding: 1rem;
-  color: white;
-  background: #121212; /* Match course card background */
+  color: #296059;
+  background: #c6f1ef; /* Match course card background */
 }
 /* 
 .user-item:nth-child(2n) .user-item__content a .ag-courses-item_bg {
@@ -26,23 +26,23 @@
 } */
 
 .user-item:nth-child(2n) .user-item__content a .ag-courses-item_bg {
-  background-color: #3ecd5e;
+  background-color: #8cccc4;
 }
 
 .user-item:nth-child(3n) .user-item__content a .ag-courses-item_bg {
-  background-color: #e44002;
+  background-color: #8cccc4;
 }
 
 .user-item:nth-child(4n) .user-item__content a .ag-courses-item_bg {
-  background-color: #952aff;
+  background-color: #8cccc4;
 }
 
 .user-item:nth-child(5n) .user-item__content a .ag-courses-item_bg {
-  background-color: #cd3e94;
+  background-color: #8cccc4;
 }
 
 .user-item:nth-child(6n) .user-item__content a .ag-courses-item_bg {
-  background-color: #4c49ea;
+  background-color: #8cccc4;
 }
 
 
@@ -60,7 +60,7 @@
 
   z-index: 5;
 
-  background-color: #cd3e94;
+  background-color: #8cccc4;
 }
 
 
@@ -84,12 +84,12 @@
 }
 
 .user-item__info h2 {
-  color: #FFF; 
+  color: black; 
   margin: 0;
 }
 
 .user-item__info h3 {
-  color: #FFF; 
+  color: black; 
   margin: 0;
 }
 

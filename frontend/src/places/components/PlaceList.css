@@ -40,17 +40,29 @@
 }
 
 .place-list__filter button {
-  padding: 0.4rem 0.8rem; /* Adjusted padding */
-  font-size: 0.8rem; 
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  flex: 1; 
+    font-size: 0.85rem; 
+    text-align: center;
+    padding: 0.6rem;
+    min-height: 40px; 
+    line-height: 1.2; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 0 0.2rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4;
 }
 
 .place-list__filter button:hover {
-  background-color: #0056b3;
+  color: black;
+    background-color: #8cccc4;
+    box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4, 0 0 50px #8cccc4, 0 0 100px #8cccc4;  
 }
 
 /* Adjusting Card Size */
@@ -134,83 +146,6 @@
   color: white;
 }
 
-/* For smaller screens, ensure buttons are responsive */
-@media (max-width: 1200px) {
-  .place-list {
-    grid-template-columns: repeat(4, 1fr); /* Four cards per row for smaller screens */
-  }
-
-  .place-item__content {
-    height: 24rem; /* Adjust content height */
-  }
-
-  .place-item__image {
-    flex: 0 0 55%; /* Adjust image height for smaller screens */
-  }
-}
-
-@media (max-width: 992px) {
-  .place-list {
-    grid-template-columns: repeat(3, 1fr); /* Three cards per row for medium screens */
-  }
-
-  .place-item__content {
-    height: 22rem; /* Adjust card height */
-  }
-
-  .place-item__image {
-    flex: 0 0 50%; /* Adjust image size */
-  }
-}
-
-@media (max-width: 768px) {
-  .place-list {
-    grid-template-columns: repeat(2, 1fr); /* Two cards per row for tablets */
-  }
-
-  .place-list__filter {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: space-between; /* Distribute elements across the row */
-    gap: 1rem; /* Space between the elements */
-    align-items: center; /* Vertically center the elements */
-  }
-
-  .place-list__filter input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    width: 200px; /* Set a fixed width for the search inputs */
-    border: 1px solid #ccc;
-  }
-
-  .place-list__filter button,
-  .place-list__filter .branch-filter-button {
-    padding: 0.4rem 0.8rem; /* Adjusted padding */
-    font-size: 0.8rem; /* Smaller font size */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  .place-list__filter button:hover,
-  .place-list__filter .branch-filter-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .place-item__image {
-    height: 6rem; /* Adjust image height for smaller screens */
-  }
-
-  .place-item__info h2,
-  .place-item__info h3,
-  .place-item__info p {
-    font-size: 0.8rem;
-  }
-}
-
 @media (max-width: 480px) {
   .place-list {
     grid-template-columns: 1fr; /* One card per row for mobile screens */
@@ -260,39 +195,32 @@
 /* Hover Effect */
 .branch-checkbox:hover {
   transform: translateY(-2px);
-  color: #007bff;
+  color: #8cccc4;
 }
 
 /* Button Styling */
 .place-list__filter Button {
-  background-color: #007bff;
-  color: white;
+  flex: 1; 
+  font-size: 0.85rem; 
+  text-align: center;
+  padding: 0.6rem;
+  min-height: 40px; 
+  line-height: 1.2; 
   border: none;
-  padding: 0.4rem 0.8rem; /* Adjusted padding */
   border-radius: 6px;
-  font-size: 0.8rem; /* Smaller font size */
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  margin: 0 0.2rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: black;
+  box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4;
 }
 
 .place-list__filter Button:hover {
-  background-color: #0056b3;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .branch-filter {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .branch-checkbox {
-    font-size: 0.8rem; /* Adjusted font size for smaller screens */
-  }
-
-  .place-list__filter Button {
-    font-size: 0.8rem; /* Adjusted font size */
-    padding: 0.4rem 0.8rem; /* Adjusted padding */
-  }
+  color: black;
+  background-color: #8cccc4;
+  box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4, 0 0 50px #8cccc4, 0 0 100px #8cccc4;  
 }

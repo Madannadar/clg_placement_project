@@ -7,6 +7,7 @@
   /* padding: 1rem; */
   margin-left: 0;
   overflow-x: hidden;
+  
   /* border: 1px solid #e0e0e0; */
 }
 
@@ -24,20 +25,20 @@
 
 .place-item__content {
   padding: 1rem; /* Adjusted padding to keep content smaller within the card */
-  background: #ffffff;
+  background: #c6f1ef;
   border-radius: 12px; /* Keeps the rounded corners */
   /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
   /* transition: box-shadow 0.3s ease, background-color 0.3s ease; */
   /* width: calc(100% - 40px); Compensate for 20px border on both sides */
   box-sizing: border-box; /* Ensure border is part of the card dimensions */
-  border: 9px solid #ffffff; 
+  border: 9px solid #c6f1ef; 
   text-align: left;
 }
 
 .place-item__content:hover {
-  background-color: #f8f9fa;
+  background-color: #c6f1ef;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-color: #ffffff; /* Darker border on hover for contrast */
+  border-color: #c6f1ef; /* Darker border on hover for contrast */
 }
 
 
@@ -48,6 +49,7 @@
   overflow: hidden;
   border-radius: 8px;
   transition: height 0.3s ease;
+  transform: scale(1.1); 
 }
 
 .place-item__image img {
@@ -65,6 +67,7 @@
 .place-item__info {
   /* padding: 0.8rem 0; */
   text-align: center;
+  background-color: #c6f1ef;
 }
 
 .place-item__info h2 {
@@ -83,7 +86,7 @@
   left: 0;
   width: 50%; /* Adjust width of the line */
   height: 2px; /* Line thickness */
-  background-color: #0056b3; /* Cyan color */
+  background-color: #296059; /* Cyan color */
 }
 
 .place-item__info h3,
@@ -98,11 +101,11 @@
 /* Card Actions */
 .place-item__actions {
   display: flex;
-  justify-content: space-between; /* Equal spacing between buttons */
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
-  /* padding: 0.8rem 0; */
   border-top: 1px solid #e0e0e0;
+  background-color: #c6f1ef;
 }
 
 .place-item__actions button,
@@ -121,13 +124,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  color: black;
+  box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4;
 }
 
+.place-item__actions a:hover{
+  background-color: #c6f1ef;
+  box-shadow: 0 0 5px #296059, 0 0 25px #296059, 0 0 50px #296059, 0 0 100px #296059;
+}
 /* Specific button styles remain unchanged */
 .place-item__actions button {
   /* font-size: 3rem; */
-  background-color: #007bff;
-  color: #fff;
+  background-color: transparent;
+  color: black;
 }
 
 .place-item__actions button.inverse {
@@ -142,7 +152,9 @@
 
 /* Hover effects remain the same */
 .place-item__actions button:hover {
-  background-color: #0056b3;
+  color: black;
+  background-color: #c6f1ef;
+  box-shadow: 0 0 5px #296059, 0 0 25px #296059, 0 0 50px #296059, 0 0 100px #296059;
 }
 
 .place-item__actions button.inverse:hover {
@@ -163,9 +175,9 @@
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 40%; 
-  max-width: 60rem; 
+  max-width: 35rem; 
   height: 90%;
-  background: #ffffff;
+  background: #c6f1ef;
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3); 
   border-radius: 12px;
   overflow-y: auto;
@@ -182,7 +194,7 @@
 
 .place-item.expanded .place-item__image img {
   width: 100%;
-  height: 100%;
+  height: 95%;
   object-fit: cover;
 }
 
@@ -194,6 +206,7 @@
   height: auto;
   padding: 1rem; 
   box-shadow: none;
+  background: #c6f1ef;
 }
 
 /* Buttons remain the same size but are now inside a larger card */
