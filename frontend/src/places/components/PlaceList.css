@@ -40,7 +40,7 @@
 }
 
 .place-list__filter button {
-  flex: 1; 
+    flex: 1; 
     font-size: 0.85rem; 
     text-align: center;
     padding: 0.6rem;
@@ -54,13 +54,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
+    background-color: #8cccc4;
     color: black;
     box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4;
 }
+.place-list__filter_searchbar {
+  width: 500px; /* Explicitly set the width */
+  max-width: 100%; /* Ensure it doesn't overflow its container */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
 
 .place-list__filter button:hover {
-  color: black;
+    color: black;
     background-color: #8cccc4;
     box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4, 0 0 50px #8cccc4, 0 0 100px #8cccc4;  
 }
@@ -188,39 +194,12 @@
 .branch-checkbox input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: #007bff; /* Checkbox color when checked */
+  accent-color: #8cccc4; /* Checkbox color when checked */
   cursor: pointer;
 }
 
-/* Hover Effect */
+
 .branch-checkbox:hover {
   transform: translateY(-2px);
   color: #8cccc4;
-}
-
-/* Button Styling */
-.place-list__filter Button {
-  flex: 1; 
-  font-size: 0.85rem; 
-  text-align: center;
-  padding: 0.6rem;
-  min-height: 40px; 
-  line-height: 1.2; 
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  margin: 0 0.2rem; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  color: black;
-  box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4;
-}
-
-.place-list__filter Button:hover {
-  color: black;
-  background-color: #8cccc4;
-  box-shadow: 0 0 5px #8cccc4, 0 0 25px #8cccc4, 0 0 50px #8cccc4, 0 0 100px #8cccc4;  
 }
