@@ -203,7 +203,7 @@
   transform: translateY(-2px);
   color: #8cccc4;
 }
-@media (max-width: 390px) {
+@media (max-width: 479px) {
   .place-list__filter input {
     width: 100%; /* Full width for small screens */
     font-size: 0.85rem; /* Slightly smaller font size for compact layout */
@@ -211,7 +211,8 @@
     border-radius: 6px; /* Slightly reduced border radius */
     border: 1px solid #ddd; /* Lighter border for minimalism */
     background-color: #f8f8f8; /* Subtle background for better contrast */
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Softer inner shadow */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Softer inner shadow */
   }
 
 
@@ -269,5 +270,229 @@
   .place-item.expanded .place-item__actions {
     flex-direction: column; /* Stack buttons vertically */
     gap: 0.5rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 729px) {
+  .place-list__filter input {
+    width: 100%; /* Full width for small screens */
+    font-size: 0.85rem; /* Slightly smaller font size for compact layout */
+    padding: 0.6rem; /* Adjusted padding for better fit */
+    border-radius: 6px; /* Slightly reduced border radius */
+    border: 1px solid #ddd; /* Lighter border for minimalism */
+    background-color: #f8f8f8; /* Subtle background for better contrast */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Softer inner shadow */
+  }
+
+
+  .place-list__filter input::placeholder {
+    font-size: 0.75rem; /* Slightly smaller placeholder font */
+    color: #aaa; /* Subtle placeholder color */
+  }
+  .place-list {
+    grid-template-columns: 1fr 1fr; /* Single column layout for small devices */
+    gap: 0.5rem; /* Smaller gap between items */
+    padding: 0; /* Remove padding for smaller screens */
+    margin: 0;
+  }
+
+  .place-item {
+    max-width: 90%; /* Full width for the card */
+    margin: 0.5rem auto; /* Add some margin for spacing */
+  }
+
+  .place-item__image {
+    height: 7rem; /* Smaller image height */
+  }
+
+  .place-item__info h2 {
+    font-size: 0.9rem; /* Reduce font size for headings */
+  }
+
+  .place-item__info h3,
+  .place-item__info p {
+    font-size: 0.8rem; /* Smaller font size for additional text */
+  }
+
+  .place-item__actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.4rem; /* Smaller gap between buttons */
+  }
+
+  .place-item__actions button,
+  .place-item__actions a {
+    width: 100%; /* Full width buttons */
+    font-size: 0.75rem; /* Adjust font size for smaller buttons */
+    padding: 0.4rem; /* Reduced padding for compact size */
+  }
+
+  .place-item.expanded {
+    width: 90%; /* Occupy most of the screen width */
+    height: auto; /* Adjust height automatically */
+    padding: 0.5rem; /* Smaller padding inside the card */
+  }
+
+  .place-item.expanded .place-item__image {
+    height: 12rem; /* Reduced height for the expanded image */
+  }
+
+  .place-item.expanded .place-item__actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 729px) and (max-width: 1000px) {
+  .place-list__filter input {
+    width: 100%; /* Full width for small screens */
+    font-size: 0.85rem; /* Slightly smaller font size for compact layout */
+    padding: 0.6rem; /* Adjusted padding for better fit */
+    border-radius: 6px; /* Slightly reduced border radius */
+    border: 1px solid #ddd; /* Lighter border for minimalism */
+    background-color: #f8f8f8; /* Subtle background for better contrast */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Softer inner shadow */
+  }
+
+
+  .place-list__filter input::placeholder {
+    font-size: 0.75rem; /* Slightly smaller placeholder font */
+    color: #aaa; /* Subtle placeholder color */
+  }
+  .place-list {
+    grid-template-columns: 1fr 1fr 1fr; /* Single column layout for small devices */
+    gap: 0.5rem; /* Smaller gap between items */
+    padding: 0; /* Remove padding for smaller screens */
+    margin: 0;
+  }
+
+  .place-item {
+    max-width: 90%; /* Full width for the card */
+    margin: 0.5rem auto; /* Add some margin for spacing */
+  }
+
+  .place-item__image {
+    height: 7rem; /* Smaller image height */
+  }
+
+  .place-item__info h2 {
+    font-size: 0.9rem; /* Reduce font size for headings */
+  }
+
+  .place-item__info h3,
+  .place-item__info p {
+    font-size: 0.8rem; /* Smaller font size for additional text */
+  }
+
+  .place-item__actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.4rem; /* Smaller gap between buttons */
+  }
+
+  .place-item__actions button,
+  .place-item__actions a {
+    width: 100%; /* Full width buttons */
+    font-size: 0.75rem; /* Adjust font size for smaller buttons */
+    padding: 0.4rem; /* Reduced padding for compact size */
+  }
+
+  .place-item.expanded {
+    width: 90%; /* Occupy most of the screen width */
+    height: auto; /* Adjust height automatically */
+    padding: 0.5rem; /* Smaller padding inside the card */
+  }
+
+  .place-item.expanded .place-item__image {
+    height: 12rem; /* Reduced height for the expanded image */
+  }
+
+  .place-item.expanded .place-item__actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1500px) {
+  .place-list__filter input {
+    width: 100%; /* Full width for small screens */
+    font-size: 0.85rem; /* Slightly smaller font size for compact layout */
+    padding: 0.6rem; /* Adjusted padding for better fit */
+    border-radius: 6px; /* Slightly reduced border radius */
+    border: 1px solid #ddd; /* Lighter border for minimalism */
+    background-color: #f8f8f8; /* Subtle background for better contrast */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Softer inner shadow */
+  }
+
+
+  .place-list__filter input::placeholder {
+    font-size: 0.75rem; /* Slightly smaller placeholder font */
+    color: #aaa; /* Subtle placeholder color */
+  }
+  .place-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Single column layout for small devices */
+    gap: 0.5rem; /* Smaller gap between items */
+    padding: 0; /* Remove padding for smaller screens */
+    margin: 0;
+  }
+
+  .place-item {
+    max-width: 90%; /* Full width for the card */
+    margin: 0.5rem auto; /* Add some margin for spacing */
+  }
+
+  .place-item__image {
+    height: 7rem; /* Smaller image height */
+  }
+
+  .place-item__info h2 {
+    font-size: 0.9rem; /* Reduce font size for headings */
+  }
+
+  .place-item__info h3,
+  .place-item__info p {
+    font-size: 0.8rem; /* Smaller font size for additional text */
+  }
+
+  .place-item__actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.4rem; /* Smaller gap between buttons */
+  }
+
+  .place-item__actions button,
+  .place-item__actions a {
+    width: 100%; /* Full width buttons */
+    font-size: 0.75rem; /* Adjust font size for smaller buttons */
+    padding: 0.4rem; /* Reduced padding for compact size */
+  }
+
+  .place-item.expanded {
+    width: 90%; /* Occupy most of the screen width */
+    height: auto; /* Adjust height automatically */
+    padding: 0.5rem; /* Smaller padding inside the card */
+  }
+
+  .place-item.expanded .place-item__image {
+    height: 12rem; /* Reduced height for the expanded image */
+  }
+
+  .place-item.expanded .place-item__actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 664px) {
+  .placeListFilter{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 755px) {
+  .selectBranch {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -1,9 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv'); // Import dotenv
+
+// Load environment variables
+dotenv.config();
 
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
@@ -40,23 +43,21 @@ app.use((error, req, res, next) => {
       console.log(err);
     });
   }
-  if (res.headerSent) {1
+  if (res.headerSent) {
     return next(error);
   }
   res.status(error.code || 500);
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 
+// Connect to MongoDB using the URI from .env
 mongoose
-  .connect(
-    'mongodb+srv://madanak0509:Madanin2024.@cluster0.dixjz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      connectTimeoutMS: 6000, 
-      serverSelectionTimeoutMS: 6000 
-    }
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    connectTimeoutMS: 6000, 
+    serverSelectionTimeoutMS: 6000 
+  })
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(5000, () => console.log("Server running on port 5000"));

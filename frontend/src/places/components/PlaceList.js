@@ -75,7 +75,7 @@ const PlaceList = (props) => {
   return (
     <React.Fragment>
       {/* Title Search Input */}
-      <div
+      <div className="placeListFilter"
         style={{
           display: "flex",
           gap: "20px",
@@ -111,7 +111,7 @@ const PlaceList = (props) => {
         </div>
       </div>
 
-      <div
+      <div className="selectBranch"
         style={{
           display: "flex",
           // alignItems: "flex-start",
