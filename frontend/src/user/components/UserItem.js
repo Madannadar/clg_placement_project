@@ -28,7 +28,7 @@ const UserItem = (props) => {
             <h3 className="ag-courses-item_date-box">
               {props.placeCount}{" "}
               {props.placeCount === 1 ? "Student" : "Students"} (
-              {studentPercentage}%)
+              {studentPercentage}%) 
             </h3>
           </div>
         </Link>
